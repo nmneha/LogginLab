@@ -36,12 +36,16 @@ public class LogginLabTest {
 
     @Test
     public void thresholdReached() {
-        Integer limit = 5;
-        LogginLab limitOver = new LogginLab;
-        limitOver.setThreshold(limit);
-        for (Integer i = 1; i <= limit; i++)
-            if (limitOver.getThreshold(i)) {
-            logger.log()
-        }
+        Integer limit = 6;
+        LogginLab limitOver = new LogginLab();
+        limitOver.setThreshold(3);
+        for (Integer i = 1; i < limit; i++)
+            if (limitOver.thresholdReached(i)) {
+            logger.log(Level.INFO, "Limit exceeds threshold!");
+            assertTrue(limitOver.thresholdReached(i));
+        } else {
+                logger.log(Level.INFO, "Threshold not reached. It is " + i);
+                assertFalse(limitOver.thresholdReached(i));
+            }
     }
 }
